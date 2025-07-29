@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  manager_raspberry_pi:
+    build: ./manager_raspberry_pi
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./manager_raspberry_pi/results:/app/results
+    depends_on:
+      - pc_worker
+      - laptop_worker
+
+  pc_worker:
+    build: ./pc_worker
+
+  laptop_worker:
+    build: ./laptop_worker

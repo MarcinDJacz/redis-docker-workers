@@ -1,0 +1,2 @@
+{'result': 32, 'worker': 'pc_worker'}
+{'result': 41, 'worker': 'laptop_worker'}
