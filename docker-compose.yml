@@ -1,18 +1,22 @@
 version: '3.8'
 
 services:
-  manager_raspberry_pi:
-    build: ./manager_raspberry_pi
+  redis:
+    image: redis:7
     ports:
-      - "5000:5000"
-    volumes:
-      - ./manager_raspberry_pi/results:/app/results
+      - "6379:6379"
+
+  manager:
+    build: ./manager
     depends_on:
-      - pc_worker
-      - laptop_worker
+      - redis
 
-  pc_worker:
-    build: ./pc_worker
+  worker1:
+    build: ./worker
+    depends_on:
+      - redis
 
-  laptop_worker:
-    build: ./laptop_worker
+  worker2:
+    build: ./worker
+    depends_on:
+      - redis
